@@ -1,47 +1,87 @@
-# simple_shell
+# Simple Shell Project
 
-A simple shell written in C
+This project develope a **UNIX command line interpreter** base in the _sh_ shell.
 
-## Tasks
-## 0. Betty would be proud
-mandatory
-Write a beautiful code that passes the Betty checks
-## 1. Simple shell 0.1
-mandatory
-Write a UNIX command line interpreter.
-•	Usage: simple_shell
-Your Shell should:
-•	Display a prompt and wait for the user to type a command. A command line always ends with a new line.
-•	The prompt is displayed again each time a command has been executed.
-•	The command lines are simple, no semicolons, no pipes, no redirections or any other advanced features.
-•	The command lines are made only of one word. No arguments will be passed to programs.
-•	If an executable cannot be found, print an error message and display the prompt again.
-•	Handle errors.
-•	You have to handle the “end of file” condition (Ctrl+D)
-You don’t have to:
-•	use the PATH
-•	implement built-ins
-•	handle special characters : ", ', `, \, *, &, #
-•	be able to move the cursor
-•	handle commands with arguments
-## 2. Simple shell 0.2
-mandatory
-Simple shell 0.1 +
-•	Handle command lines with arguments
-## 3. Simple shell 0.3
-mandatory
-Simple shell 0.2 +
-•	Handle the PATH
-•	fork must not be called if the command doesn’t exist
-## 4. Simple shell 0.4
-mandatory
-Simple shell 0.3 +
-•	Implement the exit built-in, that exits the shell
-•	Usage: exit
-•	You don’t have to handle any argument to the built-in exit
-## 5. Simple shell 1.0
-mandatory
-Simple shell 0.4 +
-•	Implement the env built-in, that prints the current environment
+## Installation
 
+1. Clone the repository to your local files.
+2. Compile using the GNU Compiler gcc, and the flags Wall, Werror, Wextra and -pedantic.
 
+> gcc -Wall -Werror -Wextra -pedantic \*.c -o hsh
+
+## Usage
+
+### Interactive Mode
+
+Execute the shell to start.
+
+> ./hsh
+
+Use the same as _sh_ shell.
+
+#### Example of use
+
+```
+$ ./hsh
+hsh_shell$ /bin/ls
+hsh main.c shell.c
+hsh_shell$
+```
+
+Error in Interactive Mode
+
+```
+$ ./hsh
+hsh_shell$ HelloWorld
+./hsh: 1: HelloWorld: not found
+hsh_shell$
+```
+
+### Non-Interactive Mode
+
+#### Example of use
+
+```
+$ echo "/bin/ls" | ./hsh
+hsh main.c shell.c test_ls_2
+$
+```
+
+Error in Non-Interactive Mode
+
+```
+$ echo "HelloWorld" | ./hsh
+$ ./hsh: 1: HelloWorld: not found
+$
+```
+
+## Features
+
+### Build-in Commands
+
+- exit
+- env
+
+Example of use feature (exit)
+
+```
+$ ./hsh
+hsh_shell$ exit 98
+$ echo $?
+98
+```
+
+### Features
+
+- End of File (Ctrl+d) : Exit Shell
+- Accepts arguments for functions
+- Check the Path for executable file
+
+## Development
+
+This project was developed without the use of most standard library functions. The heart of the code is in system calls like write and read, and in the management of memory through allocation and liberation with malloc, free and pointers.
+
+## Authors
+
+- Marvelous Ohaeri
+- Odinakachi Iwuala
